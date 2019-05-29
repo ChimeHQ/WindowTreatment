@@ -3,7 +3,7 @@
 
 # WindowTreatment
 
-WindowTreatment is a small set of classes and extension to aid in working with NSWindow and its associated functions.
+WindowTreatment is a small set of classes and extensions to aid in working with NSWindow and its associated functions.
 
 ## Integration
 
@@ -37,6 +37,14 @@ titlebarAwareView.contentView = myView
 
 A wrapper controller useful in cases where you need to use WindowTitlebarAwareView with a system that only accepts NSViewControllers, like NSSplitViewController.
 
+**WindowStateObserver**
+
+Convenience wrappers around observation of NSWindow states like `key` and `main`. Very useful for UI changes in response to these changes.
+
+**WindowStateAwareView**
+
+Super-simple class that uses `WindowStateObserver` and provides a nice base for NSView subclasses that need to change their appearance depending on host window state.
+
 ## NSWindow Extensions
 
 Sizing conveniences:
@@ -53,6 +61,15 @@ Title bar transparency helpers:
 window.titlebarTransparentWithFullSizeContent = true
 
 window.usesFullSizeContentView = true
+```
+
+## NSView Extensions
+
+Window state:
+
+```swift
+self.windowIsMain
+self.windowIsKey
 ```
 
 ### Suggestions or Feedback

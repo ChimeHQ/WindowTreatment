@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C965DBF8229F26DB00184E34 /* WindowStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */; };
+		C965DBFA229F270100184E34 /* WindowStateAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF9229F270100184E34 /* WindowStateAwareView.swift */; };
+		C965DBFC229F28B000184E34 /* NSView+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBFB229F28B000184E34 /* NSView+Window.swift */; };
 		C9CB63282285A185003470EC /* WindowTreatment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CB631E2285A185003470EC /* WindowTreatment.framework */; };
 		C9CB632D2285A185003470EC /* WindowTreatmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB632C2285A185003470EC /* WindowTreatmentTests.swift */; };
 		C9CB632F2285A185003470EC /* WindowTreatment.h in Headers */ = {isa = PBXBuildFile; fileRef = C9CB63212285A185003470EC /* WindowTreatment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateObserver.swift; sourceTree = "<group>"; };
+		C965DBF9229F270100184E34 /* WindowStateAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateAwareView.swift; sourceTree = "<group>"; };
+		C965DBFB229F28B000184E34 /* NSView+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Window.swift"; sourceTree = "<group>"; };
 		C9CB631E2285A185003470EC /* WindowTreatment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WindowTreatment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB63212285A185003470EC /* WindowTreatment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTreatment.h; sourceTree = "<group>"; };
 		C9CB63222285A185003470EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +97,9 @@
 				C9CB63402285C308003470EC /* WindowTitlebarAwareViewController.swift */,
 				C9CB634222861571003470EC /* NSWindow+Tabbing.swift */,
 				C9CB63442286197C003470EC /* NSWindow+Animation.swift */,
+				C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */,
+				C965DBF9229F270100184E34 /* WindowStateAwareView.swift */,
+				C965DBFB229F28B000184E34 /* NSView+Window.swift */,
 			);
 			path = WindowTreatment;
 			sourceTree = "<group>";
@@ -213,6 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C965DBF8229F26DB00184E34 /* WindowStateObserver.swift in Sources */,
+				C965DBFC229F28B000184E34 /* NSView+Window.swift in Sources */,
+				C965DBFA229F270100184E34 /* WindowStateAwareView.swift in Sources */,
 				C9CB634322861571003470EC /* NSWindow+Tabbing.swift in Sources */,
 				C9CB63412285C308003470EC /* WindowTitlebarAwareViewController.swift in Sources */,
 				C9CB633B2285A31C003470EC /* NSWindow+Sizing.swift in Sources */,
@@ -275,7 +287,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -339,7 +351,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
