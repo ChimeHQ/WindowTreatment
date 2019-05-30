@@ -6,7 +6,7 @@
 //  Copyright © 2019 Chime Systems Inc. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 extension NSWindow {
     public var titlebarTransparentWithFullSizeContent: Bool {

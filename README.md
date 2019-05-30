@@ -7,15 +7,21 @@ WindowTreatment is a small set of classes and extensions to aid in working with 
 
 ## Integration
 
-You can use [Carthage](https://github.com/Carthage/Carthage) to intall this as a static library. However, because the library relies on Objective-C categories to extend AppKit classes, you *must* include "-ObjC" in your OTHER_LDFLAGS setting.
-
 Carthage:
+
+You can use [Carthage](https://github.com/Carthage/Carthage) to intall this as a static library. However, because the library relies on Objective-C categories to extend AppKit classes, you *must* include "-ObjC" in your OTHER_LDFLAGS setting.
 
 ```
 github "ChimeHQ/WindowTreatment"
 ```
 
-Alternatively, you can just include and compile the sources directly into your project.
+Swift Package Manager:
+
+```swift
+dependencies: [
+        .package(url: "https://github.com/ChimeHQ/WindowTreatment.git")
+]
+```
 
 ## Classes
 

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Chime Systems Inc. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 open class WindowStateAwareView: NSView {
     private lazy var observer = WindowStateObserver.init { [unowned self] (state) in
