@@ -9,18 +9,18 @@
 import Foundation
 
 open class WindowStateAwareView: NSView {
-    private lazy var observer = { [unowned self] in
-        return WindowStateObserver(block: { [unowned self] (state) in
-            switch state {
-            case .becameMain, .resignedMain:
-                self.windowMainStateChanged()
-            case .becameKey, .resignedKey:
-                self.windowKeyStateChanged()
-            }
-        })
-        }()
+    private lazy var observer = WindowStateObserver.init { [unowned self] (state) in
+        switch state {
+        case .becameMain, .resignedMain:
+            self.windowMainStateChanged()
+        case .becameKey, .resignedKey:
+            self.windowKeyStateChanged()
+        }
+    }
 
     override open func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+
         observer.observe(window: window)
     }
 
