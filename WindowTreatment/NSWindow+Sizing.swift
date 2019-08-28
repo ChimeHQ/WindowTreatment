@@ -9,6 +9,10 @@
 import Cocoa
 
 extension NSWindow {
+    /// Make the receiver a sensible size, given the current screen
+    ///
+    /// This method attempts to size the window to match the current screen
+    /// aspect ratio and dimensions. It will not exceed 1024 x 900.
     public func makeReasonableSize() {
         let minWindowSize = NSMakeSize(800, 600)
         let maxWindowSize = NSMakeSize(1024, 900)
