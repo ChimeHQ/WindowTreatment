@@ -22,4 +22,11 @@ extension NSView {
     public var windowIsKey: Bool {
         return window?.isKeyWindow ?? false
     }
+
+    /// Convenience accessor for window?.isOnActiveSpace
+    ///
+    /// This method returns false if the receiver does not belong to a window view hierarchy.
+    public var windowIsOnActiveSpace: Bool {
+        return window?.isOnActiveSpace ?? false
+    }
 }
