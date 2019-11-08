@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9342E442376132C00A92D0C /* ApplicationWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9342E432376132C00A92D0C /* ApplicationWindowState.swift */; };
 		C965DBF8229F26DB00184E34 /* WindowStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */; };
 		C965DBFA229F270100184E34 /* WindowStateAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF9229F270100184E34 /* WindowStateAwareView.swift */; };
 		C965DBFC229F28B000184E34 /* NSView+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBFB229F28B000184E34 /* NSView+Window.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9342E432376132C00A92D0C /* ApplicationWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationWindowState.swift; sourceTree = "<group>"; };
 		C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateObserver.swift; sourceTree = "<group>"; };
 		C965DBF9229F270100184E34 /* WindowStateAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateAwareView.swift; sourceTree = "<group>"; };
 		C965DBFB229F28B000184E34 /* NSView+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Window.swift"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */,
 				C965DBF9229F270100184E34 /* WindowStateAwareView.swift */,
 				C965DBFB229F28B000184E34 /* NSView+Window.swift */,
+				C9342E432376132C00A92D0C /* ApplicationWindowState.swift */,
 			);
 			path = WindowTreatment;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				C965DBF8229F26DB00184E34 /* WindowStateObserver.swift in Sources */,
 				C965DBFC229F28B000184E34 /* NSView+Window.swift in Sources */,
+				C9342E442376132C00A92D0C /* ApplicationWindowState.swift in Sources */,
 				C965DBFA229F270100184E34 /* WindowStateAwareView.swift in Sources */,
 				C9CB634322861571003470EC /* NSWindow+Tabbing.swift in Sources */,
 				C9CB63412285C308003470EC /* WindowTitlebarAwareViewController.swift in Sources */,
@@ -381,7 +385,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,7 +399,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.WindowTreatment;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -411,7 +415,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -425,7 +429,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.WindowTreatment;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

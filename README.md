@@ -51,6 +51,10 @@ Convenience wrappers around observation of NSWindow states like `key` and `main`
 
 Super-simple class that uses `WindowStateObserver` and provides a nice base for NSView subclasses that need to change their appearance depending on host window state.
 
+**ApplicationWindowState**
+
+A class that tracks changes in the application's windows, simplifying logic that depends on the state of all windows.
+
 ## NSWindow Extensions
 
 Sizing conveniences:
