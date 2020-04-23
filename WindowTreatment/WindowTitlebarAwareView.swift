@@ -21,7 +21,11 @@ public class WindowTitlebarAwareView: NSView {
     }
 
     required init?(coder decoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.containerView = NSView()
+
+        super.init(coder: decoder)
+
+        setupView()
     }
 
     private func setupView() {
@@ -67,7 +71,7 @@ public class WindowTitlebarAwareView: NSView {
             view.topAnchor.constraint(equalTo: containerView.topAnchor),
             view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            ])
+        ])
     }
 }
 

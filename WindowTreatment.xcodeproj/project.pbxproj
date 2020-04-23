@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C9342E442376132C00A92D0C /* ApplicationWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9342E432376132C00A92D0C /* ApplicationWindowState.swift */; };
+		C94301522451FC0100C2BA3F /* WindowTitlebarAwareViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94301512451FC0100C2BA3F /* WindowTitlebarAwareViewTests.swift */; };
 		C965DBF8229F26DB00184E34 /* WindowStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */; };
 		C965DBFA229F270100184E34 /* WindowStateAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBF9229F270100184E34 /* WindowStateAwareView.swift */; };
 		C965DBFC229F28B000184E34 /* NSView+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = C965DBFB229F28B000184E34 /* NSView+Window.swift */; };
 		C9CB63282285A185003470EC /* WindowTreatment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9CB631E2285A185003470EC /* WindowTreatment.framework */; };
-		C9CB632D2285A185003470EC /* WindowTreatmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB632C2285A185003470EC /* WindowTreatmentTests.swift */; };
 		C9CB632F2285A185003470EC /* WindowTreatment.h in Headers */ = {isa = PBXBuildFile; fileRef = C9CB63212285A185003470EC /* WindowTreatment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9CB63392285A1C4003470EC /* WindowTitlebarAwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB63382285A1C4003470EC /* WindowTitlebarAwareView.swift */; };
 		C9CB633B2285A31C003470EC /* NSWindow+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB633A2285A31C003470EC /* NSWindow+Sizing.swift */; };
@@ -34,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		C9342E432376132C00A92D0C /* ApplicationWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationWindowState.swift; sourceTree = "<group>"; };
+		C94301502451FAC100C2BA3F /* WindowTreatment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WindowTreatment.xcconfig; sourceTree = "<group>"; };
+		C94301512451FC0100C2BA3F /* WindowTitlebarAwareViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTitlebarAwareViewTests.swift; sourceTree = "<group>"; };
 		C965DBF7229F26DB00184E34 /* WindowStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateObserver.swift; sourceTree = "<group>"; };
 		C965DBF9229F270100184E34 /* WindowStateAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateAwareView.swift; sourceTree = "<group>"; };
 		C965DBFB229F28B000184E34 /* NSView+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Window.swift"; sourceTree = "<group>"; };
@@ -41,7 +43,6 @@
 		C9CB63212285A185003470EC /* WindowTreatment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTreatment.h; sourceTree = "<group>"; };
 		C9CB63222285A185003470EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9CB63272285A185003470EC /* WindowTreatmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WindowTreatmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9CB632C2285A185003470EC /* WindowTreatmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTreatmentTests.swift; sourceTree = "<group>"; };
 		C9CB632E2285A185003470EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9CB63382285A1C4003470EC /* WindowTitlebarAwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTitlebarAwareView.swift; sourceTree = "<group>"; };
 		C9CB633A2285A31C003470EC /* NSWindow+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Sizing.swift"; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 				C965DBF9229F270100184E34 /* WindowStateAwareView.swift */,
 				C965DBFB229F28B000184E34 /* NSView+Window.swift */,
 				C9342E432376132C00A92D0C /* ApplicationWindowState.swift */,
+				C94301502451FAC100C2BA3F /* WindowTreatment.xcconfig */,
 			);
 			path = WindowTreatment;
 			sourceTree = "<group>";
@@ -110,8 +112,8 @@
 		C9CB632B2285A185003470EC /* WindowTreatmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				C9CB632C2285A185003470EC /* WindowTreatmentTests.swift */,
 				C9CB632E2285A185003470EC /* Info.plist */,
+				C94301512451FC0100C2BA3F /* WindowTitlebarAwareViewTests.swift */,
 			);
 			path = WindowTreatmentTests;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9CB63322285A185003470EC /* Build configuration list for PBXNativeTarget "WindowTreatment" */;
 			buildPhases = (
+				C94301532451FFE700C2BA3F /* Swiftlint */,
 				C9CB63192285A185003470EC /* Headers */,
 				C9CB631A2285A185003470EC /* Sources */,
 				C9CB631B2285A185003470EC /* Frameworks */,
@@ -220,6 +223,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C94301532451FFE700C2BA3F /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh swiftlint.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C9CB631A2285A185003470EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -242,7 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CB632D2285A185003470EC /* WindowTreatmentTests.swift in Sources */,
+				C94301522451FC0100C2BA3F /* WindowTitlebarAwareViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,60 +404,48 @@
 		};
 		C9CB63332285A185003470EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C94301502451FAC100C2BA3F /* WindowTreatment.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = WindowTreatment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.WindowTreatment;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		C9CB63342285A185003470EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C94301502451FAC100C2BA3F /* WindowTreatment.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = WindowTreatment/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.WindowTreatment;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

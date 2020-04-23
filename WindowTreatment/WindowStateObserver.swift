@@ -36,11 +36,23 @@ public class WindowStateObserver {
     private func registerFoWindowNotifications(_ window: NSWindow) {
         let center = NotificationCenter.default
 
-        center.addObserver(self, selector: #selector(windowDidBecomeMain(_:)), name: NSWindow.didBecomeMainNotification, object: window)
-        center.addObserver(self, selector: #selector(windowDidResignMain(_:)), name: NSWindow.didResignMainNotification, object: window)
+        center.addObserver(self,
+                           selector: #selector(windowDidBecomeMain(_:)),
+                           name: NSWindow.didBecomeMainNotification,
+                           object: window)
+        center.addObserver(self,
+                           selector: #selector(windowDidResignMain(_:)),
+                           name: NSWindow.didResignMainNotification,
+                           object: window)
 
-        center.addObserver(self, selector: #selector(windowDidBecomeKey(_:)), name: NSWindow.didBecomeKeyNotification, object: window)
-        center.addObserver(self, selector: #selector(windowDidResignKey(_:)), name: NSWindow.didResignKeyNotification, object: window)
+        center.addObserver(self,
+                           selector: #selector(windowDidBecomeKey(_:)),
+                           name: NSWindow.didBecomeKeyNotification,
+                           object: window)
+        center.addObserver(self,
+                           selector: #selector(windowDidResignKey(_:)),
+                           name: NSWindow.didResignKeyNotification,
+                           object: window)
     }
 
     private func deregisterForWindowNotifications() {
@@ -50,14 +62,13 @@ public class WindowStateObserver {
         center.removeObserver(self, name: NSWindow.didBecomeMainNotification, object: nil)
         center.removeObserver(self, name: NSWindow.didResignKeyNotification, object: nil)
         center.removeObserver(self, name: NSWindow.didBecomeKeyNotification, object: nil)
-
     }
 
     public func observe(window: NSWindow?) {
         deregisterForWindowNotifications()
 
-        if let w = window {
-            registerFoWindowNotifications(w)
+        if let win = window {
+            registerFoWindowNotifications(win)
         }
     }
 

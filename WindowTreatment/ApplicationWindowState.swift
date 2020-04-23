@@ -17,8 +17,14 @@ public class ApplicationWindowState {
     public init() {
         self.windows = Set()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(windowsChangedNotification(_:)), name: NSWindow.willCloseNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(windowsChangedNotification(_:)), name: NSWindow.didBecomeMainNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(windowsChangedNotification(_:)),
+                                               name: NSWindow.willCloseNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(windowsChangedNotification(_:)),
+                                               name: NSWindow.didBecomeMainNotification,
+                                               object: nil)
     }
 
     deinit {

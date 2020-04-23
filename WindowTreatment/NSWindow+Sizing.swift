@@ -14,8 +14,8 @@ extension NSWindow {
     /// This method attempts to size the window to match the current screen
     /// aspect ratio and dimensions. It will not exceed 1024 x 900.
     public func makeReasonableSize() {
-        let minWindowSize = NSMakeSize(800, 600)
-        let maxWindowSize = NSMakeSize(1024, 900)
+        let minWindowSize = NSSize(width: 800, height: 600)
+        let maxWindowSize = NSSize(width: 1024, height: 900)
         let fraction: CGFloat = 0.6
 
         let screenSize = NSScreen.main?.visibleFrame.size ?? minWindowSize

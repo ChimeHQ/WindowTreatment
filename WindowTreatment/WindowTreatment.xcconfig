@@ -1,0 +1,22 @@
+//
+//  WindowTreatment.xcconfig
+//  WindowTreatment
+//
+//  Created by Matt Massicotte on 2020-04-23.
+//  Copyright © 2020 Chime Systems Inc. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PRODUCT_NAME = WindowTreatment
+PRODUCT_BUNDLE_IDENTIFIER = com.chimehq.WindowTreatment
+PRODUCT_MODULE_NAME = WindowTreatment
+CURRENT_PROJECT_VERSION = 7
+MARKETING_VERSION = 1.2.4
+
+INFOPLIST_FILE = WindowTreatment/Info.plist
+MACH_O_TYPE = staticlib
+
+MACOSX_DEPLOYMENT_TARGET = 10.11
+SWIFT_VERSION = 5.0

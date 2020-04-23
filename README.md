@@ -1,9 +1,10 @@
+[![Github CI](https://github.com/ChimeHQ/WindowTreatment/workflows/CI/badge.svg)](https://github.com/ChimeHQ/WindowTreatment/actions)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 ![](https://img.shields.io/badge/Swift-5.0-orange.svg)
 
 # WindowTreatment
 
-WindowTreatment is a small set of classes and extensions to aid in working with NSWindow and its associated functions.
+WindowTreatment is a small set of classes and extensions to aid in working with `NSWindow` and its associated functions.
 
 ## Integration
 
@@ -19,7 +20,7 @@ Swift Package Manager:
 
 ```swift
 dependencies: [
-        .package(url: "https://github.com/ChimeHQ/WindowTreatment.git")
+    .package(url: "https://github.com/ChimeHQ/WindowTreatment.git")
 ]
 ```
 
@@ -27,7 +28,7 @@ dependencies: [
 
 **WindowTitlebarAwareView**
 
-A simple container view that makes it much easier to correctly position content under the titlebar of a host NSWindow. This turns out to be a fair esoteric thing to do, but can be essential when your NSWindow has a transparent titlebar.
+A simple container view that makes it much easier to correctly position content under the titlebar of a host `NSWindow`. This turns out to be a fair esoteric thing to do, but can be essential when your `NSWindow` has a transparent titlebar.
 
 ```swift
 let titlebarAwareView = WindowTitlebarAwareView()
