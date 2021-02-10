@@ -11,11 +11,11 @@ import Cocoa
 open class WindowStateAwareView: NSView {
     private lazy var observer = WindowStateObserver { [unowned self] (oldState, newState) in
         if oldState.isKey != newState.isKey {
-            windowKeyStateChanged()
+            self.windowKeyStateChanged()
         }
         
         if oldState.isMain != newState.isMain {
-            windowMainStateChanged()
+            self.windowMainStateChanged()
         }
     }
 
