@@ -123,7 +123,7 @@ public class WindowStateObserver {
     }
 
     @objc private func windowStateChange(_ notification: Notification) {
-        let window = notification.object as! NSWindow
+        guard let window = notification.object as? NSWindow else { return }
         
         handlePossibleStateChange(for: window, forward: false)
     }
