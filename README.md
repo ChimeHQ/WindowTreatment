@@ -42,15 +42,15 @@ titlebarAwareView.contentView = myView
 
 **WindowTitlebarAwareViewController**
 
-A wrapper controller useful in cases where you need to use WindowTitlebarAwareView with a system that only accepts NSViewControllers, like NSSplitViewController.
+A wrapper controller useful in cases where you need to use `WindowTitlebarAwareView` with a system that only accepts `NSViewControllers`, like `NSSplitViewController`.
 
 **WindowStateObserver**
 
-Convenience wrappers around observation of NSWindow states like `key` and `main`. Very useful for UI changes in response to these changes.
+Wrappers around observation of `NSWindow` states for `key`, `main`, and tabbing. Very useful for UI changes in response to these changes. Particularly for tab state, which is very challenging to observe correctly in all cases.
 
 **WindowStateAwareView**
 
-Super-simple class that uses `WindowStateObserver` and provides a nice base for NSView subclasses that need to change their appearance depending on host window state.
+Super-simple class that uses `WindowStateObserver` and provides a nice base for `NSView` subclasses that need to change their appearance depending on host window main/key state.
 
 **ApplicationWindowState**
 
@@ -69,6 +69,7 @@ window.makeReasonableSize()
 Title bar transparency helpers:
 
 ```swift
+// This method also handles the height adjustments needed when removing transparency
 window.titlebarTransparentWithFullSizeContent = true
 
 window.usesFullSizeContentView = true
@@ -81,6 +82,7 @@ Window state:
 ```swift
 self.windowIsMain
 self.windowIsKey
+self.windowIsOnActiveSpace
 ```
 
 ### Suggestions or Feedback
