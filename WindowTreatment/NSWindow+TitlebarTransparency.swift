@@ -21,11 +21,34 @@ extension NSWindow {
                 return
             }
 
+            let currentHeight = titleBarHeight
+            
             titlebarAppearsTransparent = newValue
             usesFullSizeContentView = newValue
+            
+            // if we are removing transparency, AppKit will
+            // change the window height. This adjustment keeps
+            // things looking the same
+            if newValue == false {
+                let delta = currentHeight - titleBarHeight
+
+                adjustFrameHeight(using: delta)
+            }
         }
     }
 
+    private func adjustFrameHeight(using delta: CGFloat) {
+        guard delta != 0.0 else { return }
+        
+        let rect = frame
+        let newFrame = NSRect(x: rect.origin.x,
+                              y: rect.origin.y,
+                              width: rect.width,
+                              height: rect.height - delta)
+
+        setFrame(newFrame, display: false)
+    }
+    
     public var usesFullSizeContentView: Bool {
         get {
             return styleMask.contains(.fullSizeContentView)

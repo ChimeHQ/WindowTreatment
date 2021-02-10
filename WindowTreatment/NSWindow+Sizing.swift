@@ -25,4 +25,15 @@ extension NSWindow {
 
         setContentSize(NSSize(width: ceil(width), height: ceil(height)))
     }
+    
+    /// Returns the total titlebar height
+    ///
+    /// Takes into account the tab bar, as well as transparent title bars and
+    /// full size content.
+    public var titleBarHeight: CGFloat {
+        let frameHeight = contentView?.frame.height ?? frame.height
+        let contentLayoutRectHeight = contentLayoutRect.height
+
+        return frameHeight - contentLayoutRectHeight
+    }
 }
