@@ -36,4 +36,14 @@ extension NSWindow {
 
         return frameHeight - contentLayoutRectHeight
     }
+    
+    /// Returns the tab bar height
+    ///
+    /// This value will be zero if the tab bar is not visible
+    public var tabBarHeight: CGFloat {
+        // hard-coding this isn't excellent, but I don't know
+        // of another way to determine it without messing around
+        // with hidden windows.
+        return isTabBarVisible ? 28.0 : 0.0
+    }
 }

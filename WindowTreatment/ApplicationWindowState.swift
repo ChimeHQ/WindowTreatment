@@ -9,20 +9,21 @@
 import Cocoa
 
 public class ApplicationWindowState {
-    private var windows: Set<NSWindow>
-    private var lastMainWindow: NSWindow?
+    private var lastWindowListHash: Int
+    private var lastMainWindowHash: Int
 
     public var changeHandler: (() -> Void)?
 
     public init() {
-        self.windows = Set()
+        self.lastWindowListHash = 0
+        self.lastMainWindowHash = 0
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(windowsChangedNotification(_:)),
+                                               selector: #selector(windowWillCloseNotification(_:)),
                                                name: NSWindow.willCloseNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(windowsChangedNotification(_:)),
+                                               selector: #selector(mainWindowChangedNotification(_:)),
                                                name: NSWindow.didBecomeMainNotification,
                                                object: nil)
     }
@@ -31,17 +32,32 @@ public class ApplicationWindowState {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc private func windowsChangedNotification(_ notification: NSNotification) {
-        let current = Set(currentWindows)
+    @objc private func mainWindowChangedNotification(_ notification: NSNotification) {
+        deliverChangeNotificationIfNeeded()
+    }
 
-        if windows == current && mainWindow == lastMainWindow {
+    @objc private func windowWillCloseNotification(_ notification: NSNotification) {
+        // The reason for the async thing here is because this notification tells
+        // you which window *will* close, but it is currently still in the current list.
+        OperationQueue.main.addOperation {
+            self.deliverChangeNotificationIfNeeded()
+        }
+    }
+
+    private func deliverChangeNotificationIfNeeded() {
+        // Set would be nicer, but need weak referencing
+        let windowListHash = currentWindows.hashValue
+        let mainWindowHash = mainWindow.hashValue
+
+        // filter out duplicates
+        if lastWindowListHash == windowListHash && lastMainWindowHash == mainWindowHash {
             return
         }
 
-        windows = Set(current)
-        lastMainWindow = mainWindow
+        lastMainWindowHash = mainWindowHash
+        lastWindowListHash = windowListHash
 
-        changeHandler?()
+        self.changeHandler?()
     }
 
     public var windowsMenu: NSMenu? {

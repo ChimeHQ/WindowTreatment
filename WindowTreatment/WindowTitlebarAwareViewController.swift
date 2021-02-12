@@ -47,7 +47,17 @@ public class WindowTitlebarAwareViewController: NSViewController {
             windowAwareView.contentView = newValue
         }
     }
+    
     private func installView() {
         contentView = contentViewController?.view
+    }
+    
+    public var ignoreTabBar: Bool {
+        get {
+            return windowAwareView.ignoreTabBar
+        }
+        set {
+            windowAwareView.ignoreTabBar = newValue
+        }
     }
 }

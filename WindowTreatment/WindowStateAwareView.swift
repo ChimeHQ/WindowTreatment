@@ -17,6 +17,10 @@ open class WindowStateAwareView: NSView {
         if oldState.isMain != newState.isMain {
             self.windowMainStateChanged()
         }
+        
+        if oldState.tabStateEqual(to: newState) == false {
+            self.windowTabStateChanged()
+        }
     }
 
     override open func viewDidMoveToWindow() {
@@ -30,6 +34,10 @@ open class WindowStateAwareView: NSView {
     }
 
     open func windowKeyStateChanged() {
+        // for subclasses
+    }
+    
+    open func windowTabStateChanged() {
         // for subclasses
     }
 }

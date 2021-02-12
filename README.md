@@ -28,7 +28,7 @@ dependencies: [
 
 **WindowTitlebarAwareView**
 
-A simple container view that makes it much easier to correctly position content under the titlebar of a host `NSWindow`. This turns out to be a fair esoteric thing to do, but can be essential when your `NSWindow` has a transparent titlebar.
+A simple container view that makes it much easier to correctly position content under the titlebar of a host `NSWindow`. This turns out to be a fairly esoteric thing to do, but can be essential when your `NSWindow` has a transparent titlebar.
 
 ```swift
 let titlebarAwareView = WindowTitlebarAwareView()
@@ -46,7 +46,7 @@ A wrapper controller useful in cases where you need to use `WindowTitlebarAwareV
 
 **WindowStateObserver**
 
-Wrappers around observation of `NSWindow` states for `key`, `main`, and tabbing. Very useful for UI changes in response to these changes. Particularly for tab state, which is very challenging to observe correctly in all cases.
+Wrappers around observation of `NSWindow` states for `key`, `main`, and tabbing. Very useful for UI updates in response to these changes. Particularly for tab state, which is very challenging to observe correctly in all cases.
 
 **WindowStateAwareView**
 

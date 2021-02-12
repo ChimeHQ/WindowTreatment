@@ -17,36 +17,13 @@ extension NSWindow {
             // This is subtle, but just touching titlebarAppearsTransparent,
             // even to set it to its existing value, can affect other
             // window behavior (like tabbing) during this runtime loop.
-            if titlebarAppearsTransparent == newValue {
+            if (titlebarAppearsTransparent && usesFullSizeContentView) == newValue {
                 return
             }
 
-            let currentHeight = titleBarHeight
-            
             titlebarAppearsTransparent = newValue
             usesFullSizeContentView = newValue
-            
-            // if we are removing transparency, AppKit will
-            // change the window height. This adjustment keeps
-            // things looking the same
-            if newValue == false {
-                let delta = currentHeight - titleBarHeight
-
-                adjustFrameHeight(using: delta)
-            }
         }
-    }
-
-    private func adjustFrameHeight(using delta: CGFloat) {
-        guard delta != 0.0 else { return }
-        
-        let rect = frame
-        let newFrame = NSRect(x: rect.origin.x,
-                              y: rect.origin.y,
-                              width: rect.width,
-                              height: rect.height - delta)
-
-        setFrame(newFrame, display: false)
     }
     
     public var usesFullSizeContentView: Bool {
@@ -55,9 +32,9 @@ extension NSWindow {
         }
         set {
             if newValue {
-                styleMask = styleMask.union(.fullSizeContentView)
+                styleMask.insert(.fullSizeContentView)
             } else {
-                styleMask = styleMask.subtracting(.fullSizeContentView)
+                styleMask.subtract(.fullSizeContentView)
             }
         }
     }

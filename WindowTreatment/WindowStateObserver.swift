@@ -51,10 +51,11 @@ public class WindowStateObserver {
     public var block: ObserverBlock?
 
     private var tabbedWindowsObservation: NSKeyValueObservation?
-    private var lastState: State
+    private var currentState: State
+    private weak var observingWindow: NSWindow?
     
     public init() {
-        self.lastState = State(window: nil)
+        self.currentState = State(window: nil)
     }
 
     public convenience init(block: @escaping ObserverBlock) {
@@ -68,6 +69,8 @@ public class WindowStateObserver {
     }
 
     private func registerForWindowNotifications(_ window: NSWindow) {
+        self.observingWindow = window
+        
         let center = NotificationCenter.default
 
         center.addObserver(self,
@@ -112,6 +115,7 @@ public class WindowStateObserver {
         center.removeObserver(self, name: NSWindow.tabStateDidChangeNotification, object: nil)
         
         self.tabbedWindowsObservation = nil
+        self.observingWindow = nil
     }
 
     public func observe(window: NSWindow?) {
@@ -124,24 +128,39 @@ public class WindowStateObserver {
 
     @objc private func windowStateChange(_ notification: Notification) {
         guard let window = notification.object as? NSWindow else { return }
+        guard let observingWindow = observingWindow else { return }
         
-        handlePossibleStateChange(for: window, forward: false)
-    }
+        // this is a very important check to prevent recursion
+        let tabStateChange = notification.name == NSWindow.tabStateDidChangeNotification
         
-    private func handlePossibleStateChange(for window: NSWindow, forward: Bool) {
-        let newState = State(window: window)
-        
-        if lastState == newState {
+        if tabStateChange && observingWindow === window {
             return
         }
         
+        handlePossibleStateChange(for: observingWindow, forward: tabStateChange == false)
+    }
+    
+    private func handlePossibleStateChange(for window: NSWindow, forward: Bool) {
+        precondition(window === observingWindow)
+        
+        let newState = State(window: window)
+        
+        if currentState == newState {
+            return
+        }
+        
+        let lastState = currentState
+        currentState = newState
+        
+        // make certain to update the currentState *before* invoking the block
+        
         block?(lastState, newState)
         
-        lastState = newState
-        
-        if forward && lastState.tabStateEqual(to: newState) == false {
+        let tabStateChange = lastState.tabStateEqual(to: newState) == false
+        if forward && tabStateChange {
             // use this notification to inform other observers that their tabbing state may have changed
-            // as well
+            // as well. Also, careful as we will recieve this notification ourselves, so
+            // we have to be sure it will not cause recursion.
             NotificationCenter.default.post(name: NSWindow.tabStateDidChangeNotification, object: window)
         }
     }

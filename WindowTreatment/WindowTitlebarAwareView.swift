@@ -8,9 +8,15 @@
 
 import Cocoa
 
-public class WindowTitlebarAwareView: NSView {
+public class WindowTitlebarAwareView: WindowStateAwareView {
     private let containerView: NSView
-    private var titlebarConstraint: NSLayoutConstraint?
+    private var topContraint: NSLayoutConstraint?
+    
+    public var ignoreTabBar = false {
+        didSet {
+            needsLayout = true
+        }
+    }
 
     public init() {
         self.containerView = NSView()
@@ -33,36 +39,34 @@ public class WindowTitlebarAwareView: NSView {
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 
     public var contentView: NSView? {
-        willSet {
-            removeOldContent()
+        get {
+            return containerView.subviews.first
         }
-        didSet {
-            installNewContent()
+        set {
+            removeExistingContent()
+            
+            if let view = newValue {
+                installNewContent(view)
+            }
         }
     }
 
-    private func removeOldContent() {
-        guard let view = contentView else {
-            return
-        }
-
-        for subview in view.subviews {
+    private func removeExistingContent() {
+        for subview in containerView.subviews {
             subview.removeFromSuperview()
         }
     }
 
-    private func installNewContent() {
-        guard let view = contentView else {
-            return
-        }
-
+    private func installNewContent(_ view: NSView) {
+        precondition(containerView.subviews.isEmpty)
+        
         containerView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -73,11 +77,9 @@ public class WindowTitlebarAwareView: NSView {
             view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
         ])
     }
-}
-
-extension WindowTitlebarAwareView {
+    
     override public func updateConstraints() {
-        if let window = self.window {
+        if let window = window {
             createLayoutGuideConstraint(for: window)
         }
 
@@ -85,11 +87,26 @@ extension WindowTitlebarAwareView {
     }
 
     private func createLayoutGuideConstraint(for window: NSWindow) {
-        titlebarConstraint?.isActive = false
+        topContraint?.isActive = false
 
-        let contentLayoutGuide = window.contentLayoutGuide as AnyObject
+        if ignoreTabBar && window.isTabBarVisible {
+            let offset = window.titleBarHeight - window.tabBarHeight
+            
+            topContraint = containerView.topAnchor.constraint(equalTo: topAnchor, constant: offset)
+        } else {
+            let contentLayoutGuide = window.contentLayoutGuide as AnyObject
 
-        titlebarConstraint = containerView.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor)
-        titlebarConstraint!.isActive = true
+            topContraint = containerView.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor)
+        }
+
+        topContraint!.isActive = true
+    }
+    
+    public override func windowTabStateChanged() {
+        // this is awkward, but the tab state isn't always established when contraints are updated
+        // by default
+        if ignoreTabBar {
+            self.needsUpdateConstraints = true
+        }
     }
 }
