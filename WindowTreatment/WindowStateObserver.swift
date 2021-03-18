@@ -98,7 +98,8 @@ public class WindowStateObserver {
                            name: NSWindow.tabStateDidChangeNotification,
                            object: nil)
 
-        if #available(macOS 10.12, *) {
+        // While this API is actually available in 10.12, observing this will reliably cause crashes in 10.14...
+        if #available(macOS 10.15, *) {
             self.tabbedWindowsObservation = window.observe(\.tabbedWindows, options: [], changeHandler: { [unowned self] (obj, _) in
                 self.handlePossibleStateChange(for: obj, forward: true)
             })
