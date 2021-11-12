@@ -1,11 +1,3 @@
-//
-//  WindowStateAwareView.swift
-//  WindowTreatment
-//
-//  Created by Matt Massicotte on 2019-05-29.
-//  Copyright © 2019 Chime Systems Inc. All rights reserved.
-//
-
 import Cocoa
 
 open class WindowStateAwareView: NSView {
@@ -29,14 +21,17 @@ open class WindowStateAwareView: NSView {
         observer.observe(window: window)
     }
 
+    /// Override this method to react to main state changes
     open func windowMainStateChanged() {
         // for subclasses
     }
 
+    /// Override this method to react to key state changes
     open func windowKeyStateChanged() {
         // for subclasses
     }
-    
+
+    /// Override this method to react to tab state changes
     open func windowTabStateChanged() {
         // for subclasses
     }
