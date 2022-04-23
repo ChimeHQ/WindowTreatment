@@ -12,7 +12,7 @@ extension NSWindow {
     static var tabStateDidChangeNotification = Notification.Name("windowTabStateDidChangeNotification")
 }
 
-public class WindowStateObserver {
+public final class WindowStateObserver {
     public struct State: Hashable {
         public var isMain: Bool
         public var isKey: Bool
@@ -69,6 +69,10 @@ public class WindowStateObserver {
     }
 
     private func registerForWindowNotifications(_ window: NSWindow) {
+        if window.canBecomeKey == false || window.canBecomeMain == false {
+            print("Warning: WindowStateObserver is monitoring a window that cannot become key or main")
+        }
+
         self.observingWindow = window
         
         let center = NotificationCenter.default
