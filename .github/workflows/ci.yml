@@ -13,6 +13,6 @@ jobs:
     name: Test
     runs-on: macOS-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: swift test
         run: swift test
