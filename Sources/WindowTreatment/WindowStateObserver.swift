@@ -69,7 +69,7 @@ public final class WindowStateObserver {
     }
 
     private func registerForWindowNotifications(_ window: NSWindow) {
-        if window.canBecomeKey == false || window.canBecomeMain == false {
+        if (window.canBecomeKey || window.canBecomeMain) == false {
             print("Warning: WindowStateObserver is monitoring a window that cannot become key or main")
         }
 
