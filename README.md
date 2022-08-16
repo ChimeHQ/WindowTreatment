@@ -77,6 +77,12 @@ self.windowIsKey
 self.windowIsOnActiveSpace
 ```
 
+## SwiftUI View Modifiers
+
+```swift
+windowStateEnvironment() // makes WindowStateKey available in the environment
+```
+
 ### Suggestions or Feedback
 
 We'd love to hear from you! Get in touch via [twitter](https://twitter.com/chimehq), an issue, or a pull request.

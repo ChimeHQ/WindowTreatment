@@ -1,6 +1,10 @@
 import Cocoa
 
 open class WindowStateAwareView: NSView {
+    public typealias StateChangeHandler = (WindowStateObserver.State, WindowStateObserver.State) -> Void
+
+    public var stateChangeHandler: StateChangeHandler? = nil
+
     private lazy var observer = WindowStateObserver { [unowned self] (oldState, newState) in
         if oldState.isKey != newState.isKey {
             self.windowKeyStateChanged()
@@ -13,6 +17,8 @@ open class WindowStateAwareView: NSView {
         if oldState.tabStateEqual(to: newState) == false {
             self.windowTabStateChanged()
         }
+
+        self.stateChangeHandler?(oldState, newState)
     }
 
     override open func viewDidMoveToWindow() {

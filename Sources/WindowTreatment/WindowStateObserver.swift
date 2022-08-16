@@ -1,11 +1,3 @@
-//
-//  WindowStateObserver.swift
-//  WindowTreatment
-//
-//  Created by Matt Massicotte on 2019-05-29.
-//  Copyright © 2019 Chime Systems Inc. All rights reserved.
-//
-
 import Cocoa
 
 extension NSWindow {
@@ -19,7 +11,7 @@ public final class WindowStateObserver {
         public var tabBarVisible: Bool
         public var tabCount: Int
         
-        init(window: NSWindow?) {
+        public init(window: NSWindow?) {
             self.isMain = window?.isMainWindow ?? false
             self.isKey = window?.isKeyWindow ?? false
             
