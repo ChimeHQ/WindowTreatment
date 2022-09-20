@@ -50,31 +50,24 @@ public class WindowTitlebarAwareView: WindowStateAwareView {
             return containerView.subviews.first
         }
         set {
-            removeExistingContent()
-            
-            if let view = newValue {
-                installNewContent(view)
-            }
+            installNewContent(newValue)
         }
     }
 
-    private func removeExistingContent() {
-        for subview in containerView.subviews {
-            subview.removeFromSuperview()
-        }
-    }
+    private func installNewContent(_ contentView: NSView?) {
+		guard let contentView = contentView else {
+			containerView.subviews = []
+			return
+		}
 
-    private func installNewContent(_ view: NSView) {
-        precondition(containerView.subviews.isEmpty)
-        
-        containerView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+		containerView.subviews = [contentView]
+        contentView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            view.topAnchor.constraint(equalTo: containerView.topAnchor),
-            view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
         ])
     }
     
@@ -91,7 +84,7 @@ public class WindowTitlebarAwareView: WindowStateAwareView {
 
         if ignoreTabBar && window.isTabBarVisible {
             let offset = window.titleBarHeight - window.tabBarHeight
-            
+
             topContraint = containerView.topAnchor.constraint(equalTo: topAnchor, constant: offset)
         } else {
             let contentLayoutGuide = window.contentLayoutGuide as AnyObject

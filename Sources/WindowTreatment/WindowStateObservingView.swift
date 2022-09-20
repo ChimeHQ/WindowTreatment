@@ -37,13 +37,13 @@ struct WindowStateObservingView<Content: View>: NSViewRepresentable {
         let hostingView = NSHostingView(rootView: envContent)
 
         view.subviews = [hostingView]
-        hostingView.translatesAutoresizingMaskIntoConstraints = false
+		hostingView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             hostingView.topAnchor.constraint(equalTo: view.topAnchor),
-            hostingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			hostingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             hostingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			hostingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
 
         view.stateChangeHandler = {
