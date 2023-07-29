@@ -16,6 +16,14 @@ dependencies: [
 ]
 ```
 
+## SwiftUI View Modifiers
+
+```swift
+observeWindowChanges() // puts the current window object into the environment
+observeTabBarChanges() // puts the `TabBarState` of the current window into the environment
+windowStateEnvironment() // makes WindowStateKey available in the environment
+```
+
 ## Classes
 
 **WindowTitlebarAwareView**
@@ -75,12 +83,6 @@ Window state:
 self.windowIsMain
 self.windowIsKey
 self.windowIsOnActiveSpace
-```
-
-## SwiftUI View Modifiers
-
-```swift
-windowStateEnvironment() // makes WindowStateKey available in the environment
 ```
 
 ### Suggestions or Feedback
