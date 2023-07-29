@@ -73,6 +73,7 @@ struct WindowStateObserving: ViewModifier {
 @available(macOS 10.15, *)
 public extension View {
 	/// This makes WindowStateKey available in the environment
+	@available(*, deprecated, message: "Use observeCurrentWindow, controlActiveState, or observeTabBarState")
     func windowStateEnvironment() -> some View {
         modifier(WindowStateObserving())
     }
