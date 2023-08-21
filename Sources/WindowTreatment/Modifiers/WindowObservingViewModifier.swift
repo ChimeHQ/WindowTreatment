@@ -3,7 +3,7 @@ import SwiftUI
 final class HostWindowChangedView: NSView {
 	typealias Handler = (NSWindow?) -> ()
 
-	var handler: Handler
+	let handler: Handler
 
 	init(handler: @escaping Handler) {
 		self.handler = handler
@@ -66,6 +66,8 @@ struct WindowObservingViewModifier: ViewModifier {
 @available(macOS 10.15, *)
 extension View {
 	/// Puts the view's parent `window` into the environment.
+	///
+	/// This makes the window available in child views. It is accessible via the `.window` environment key.
 	public func observeCurrentWindow() -> some View {
 		modifier(WindowObservingViewModifier())
 	}
