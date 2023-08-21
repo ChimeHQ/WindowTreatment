@@ -19,9 +19,8 @@ dependencies: [
 ## SwiftUI View Modifiers
 
 ```swift
-observeWindowChanges() // puts the current window object into the environment
-observeTabBarChanges() // puts the `TabBarState` of the current window into the environment
-windowStateEnvironment() // makes WindowStateKey available in the environment
+observeCurrentWindow() // puts the current window object into the environment
+observeWindowState()   // makes WindowStateKey available in the environment
 ```
 
 ## Classes
