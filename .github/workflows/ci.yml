@@ -4,15 +4,24 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
+      - 'CODE_OF_CONDUCT.md'
+      - '.editorconfig'
+      - '.spi.yml'
   pull_request:
     branches:
-      - '**'
+      - main
 
 jobs:
   test:
     name: Test
-    runs-on: macOS-latest
+    runs-on: macOS-14
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_15.3.app/Contents/Developer
     steps:
-      - uses: actions/checkout@v2
-      - name: swift test
-        run: swift test
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Test platform ${{ matrix.destination }}
+        run: set -o pipefail && xcodebuild -scheme WindowTreatment -destination "platform=macOS" test | xcbeautify
