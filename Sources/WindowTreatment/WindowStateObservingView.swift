@@ -18,7 +18,7 @@ public extension EnvironmentValues {
 struct WindowStateObservingView<Content: View>: NSViewRepresentable {
     private typealias WindowState = WindowStateObserver.State
 
-    @State private var windowState: WindowState = .init(window: nil)
+    @State private var windowState: WindowState = .init()
     private let content: Content
 
     init(content: () -> Content) {

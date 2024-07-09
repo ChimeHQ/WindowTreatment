@@ -31,6 +31,7 @@ extension View {
 	/// Puts the parent window's `WindowStateObserver.State` into the environment.
 	///
 	/// This makes the state available in child views. It is accessible via the `.windowState` environment key.
+	@MainActor
 	public func observeWindowState() -> some View {
 		modifier(WindowStateObservingModifier())
 	}
