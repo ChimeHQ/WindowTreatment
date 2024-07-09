@@ -8,6 +8,7 @@
 
 import Cocoa
 
+@MainActor
 public class ApplicationWindowState {
     private var lastWindowListHash: Int
     private var lastMainWindowHash: Int
@@ -39,7 +40,7 @@ public class ApplicationWindowState {
     @objc private func windowWillCloseNotification(_ notification: NSNotification) {
         // The reason for the async thing here is because this notification tells
         // you which window *will* close, but it is currently still in the current list.
-        OperationQueue.main.addOperation {
+		DispatchQueue.main.async {
             self.deliverChangeNotificationIfNeeded()
         }
     }

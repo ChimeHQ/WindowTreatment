@@ -9,7 +9,8 @@
 import XCTest
 @testable import WindowTreatment
 
-class WindowTitlebarAwareViewTests: XCTestCase {
+final class WindowTitlebarAwareViewTests: XCTestCase {
+	@MainActor
     func testCreateViewInWindowWithVisibleTitlebar() {
         let view = WindowTitlebarAwareView()
         let contentView = NSView()
@@ -27,6 +28,7 @@ class WindowTitlebarAwareViewTests: XCTestCase {
         XCTAssertEqual(contentView.frame, window.contentLayoutRect)
     }
 
+	@MainActor
     func testCreateViewInWindowWithInvisibleTitlebar() {
         let view = WindowTitlebarAwareView()
         let contentView = NSView()

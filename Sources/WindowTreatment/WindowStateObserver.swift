@@ -1,43 +1,48 @@
 import Cocoa
 
 extension NSWindow {
-    static var tabStateDidChangeNotification = Notification.Name("windowTabStateDidChangeNotification")
+    static let tabStateDidChangeNotification = Notification.Name("windowTabStateDidChangeNotification")
 }
 
+@MainActor
 public final class WindowStateObserver {
-    public struct State: Hashable {
-        public var isMain: Bool
-        public var isKey: Bool
-        public var tabBarVisible: Bool
-        public var tabCount: Int
-        
-        public init(window: NSWindow?) {
-            self.isMain = window?.isMainWindow ?? false
-            self.isKey = window?.isKeyWindow ?? false
-            
-            // use of this property is essential
-            self.tabBarVisible = window?.isTabBarVisible ?? false
-            
-            if #available(macOS 10.12, *) {
-                self.tabCount = window?.tabbedWindows?.count ?? 0
-            } else {
-                self.tabCount = 0
-            }
-        }
-        
-        public var isKeyOrMain: Bool {
-            return isMain || isKey
-        }
-        
-        public var tabbed: Bool {
-            return tabBarVisible && tabCount > 1
-        }
-        
-        public func tabStateEqual(to other: State) -> Bool {
-            return tabBarVisible == other.tabBarVisible && tabCount == other.tabCount
-        }
-    }
-    
+	public struct State: Hashable, Sendable {
+		public var isMain: Bool
+		public var isKey: Bool
+		public var tabBarVisible: Bool
+		public var tabCount: Int
+
+		@MainActor
+		public init(window: NSWindow?) {
+			self.isMain = window?.isMainWindow ?? false
+			self.isKey = window?.isKeyWindow ?? false
+
+			// use of this property is essential
+			self.tabBarVisible = window?.isTabBarVisible ?? false
+
+			self.tabCount = window?.tabbedWindows?.count ?? 0
+		}
+
+		public init() {
+			self.isMain = false
+			self.isKey = false
+			self.tabBarVisible = false
+			self.tabCount = 0
+		}
+
+		public nonisolated var isKeyOrMain: Bool {
+			return isMain || isKey
+		}
+
+		public nonisolated var tabbed: Bool {
+			return tabBarVisible && tabCount > 1
+		}
+
+		public nonisolated func tabStateEqual(to other: State) -> Bool {
+			return tabBarVisible == other.tabBarVisible && tabCount == other.tabCount
+		}
+	}
+
     public typealias ObserverBlock = (State, State) -> Void
 
     public var block: ObserverBlock?
@@ -54,10 +59,6 @@ public final class WindowStateObserver {
         self.init()
 
         self.block = block
-    }
-
-    deinit {
-        deregisterForWindowNotifications()
     }
 
     private func registerForWindowNotifications(_ window: NSWindow) {
@@ -97,7 +98,9 @@ public final class WindowStateObserver {
         // While this API is actually available in 10.12, observing this will reliably cause crashes in 10.14...
         if #available(macOS 10.15, *) {
             self.tabbedWindowsObservation = window.observe(\.tabbedWindows, options: [], changeHandler: { [unowned self] (obj, _) in
-                self.handlePossibleStateChange(for: obj, forward: true)
+				MainActor.assumeIsolated {
+					self.handlePossibleStateChange(for: obj, forward: true)
+				}
             })
         }
     }

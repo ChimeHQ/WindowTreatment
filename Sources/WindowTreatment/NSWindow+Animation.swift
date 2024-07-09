@@ -9,14 +9,14 @@
 import Cocoa
 
 extension NSWindow {
-    public func withAnimationDisabled(block: () -> Void) {
+    public func withAnimationDisabled(block: @MainActor () -> Void) {
         let currentBehavior = animationBehavior
 
         animationBehavior = .none
 
         block()
 
-        OperationQueue.main.addOperation {
+		DispatchQueue.main.async {
             self.animationBehavior = currentBehavior
         }
     }

@@ -3,8 +3,7 @@ import SwiftUI
 
 @available(macOS 10.15, *)
 public struct WindowStateKey: EnvironmentKey {
-    public typealias Value = WindowStateObserver.State
-    public static var defaultValue: Value = .init(window: nil)
+    public static let defaultValue: WindowStateObserver.State = .init()
 }
 
 @available(macOS 10.15, *)

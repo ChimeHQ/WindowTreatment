@@ -1,6 +1,7 @@
 import SwiftUI
 
 @available(macOS 11.0, *)
+@MainActor
 final class WindowObserverModel: ObservableObject {
 	private let observer = WindowStateObserver()
 	@Published var windowState = WindowStateObserver.State(window: nil)
