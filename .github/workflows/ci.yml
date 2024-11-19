@@ -16,12 +16,10 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: macOS-14
+    runs-on: macOS-15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
       - name: Test platform ${{ matrix.destination }}
         run: set -o pipefail && xcodebuild -scheme WindowTreatment -destination "platform=macOS" test | xcbeautify
